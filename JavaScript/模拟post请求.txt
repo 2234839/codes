@@ -12,7 +12,7 @@ else
   }
 xmlhttp.onreadystatechange=function()
   {
-  	//alert(xmlhttp.responseText); ������post����
+  	//alert(xmlhttp.responseText); 完整的post数据
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
     document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
@@ -21,9 +21,10 @@ xmlhttp.onreadystatechange=function()
 xmlhttp.open("POST","tuling.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send("name="+document.getElementById("php_b").value);
-}
+}//在函数内修改外界变量的值，然后在下面立即读取变量的值会失败（应该是异步的问题)。
+//我的解决办法：使用调用函数的方法来修改变量将收到的数据传递出去
 </script> 
 
-��Ϣ<input type="text" id="php_b" ><br/><!--������Ϣ-->
-<button type="button" onclick="loadXMLDoc()">��������</button>
+消息<input type="text" id="php_b" ><br/><!--聊天消息-->
+<button type="button" onclick="loadXMLDoc()">请求数据</button>
 <div id="myDiv"></div>
